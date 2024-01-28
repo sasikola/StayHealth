@@ -1,5 +1,5 @@
 // src/components/Layout.js
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LuHome } from "react-icons/lu";
 import { GrNotes } from "react-icons/gr";
@@ -7,7 +7,7 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { CiLogout } from "react-icons/ci";
 import { FaUsersLine } from "react-icons/fa6";
-import { IoMdNotifications } from "react-icons/io";
+import { IoNotifications } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
@@ -77,11 +77,6 @@ const Layout = ({ children }) => {
     setActiveMenuItem(itemName);
   };
 
-  const Badge = ({ count }) => (
-    <span className="bg-red-500 text-white rounded-full px-2 py-1 text-xs absolute top-0 right-0">
-      {count}
-    </span>
-  );
   return (
     <div
       className={`flex h-screen bg-red-600 ${isSidebarOpen ? "" : "md:ml-64"}`}
@@ -96,7 +91,7 @@ const Layout = ({ children }) => {
           {/* Set the height to full */}
           {/* Your Logo */}
           <div className="flex items-center justify-center h-16 bg-gray-900 text-white">
-            <div className="text-3xl font-extrabold">Logo</div>
+            <div className="text-3xl font-extrabold">SH</div>
           </div>
           {/* Sidebar Links with Icons */}
           <nav className="flex-1 bg-gray-800 p-4 space-y-2">
@@ -136,10 +131,10 @@ const Layout = ({ children }) => {
               {user?.name || "Guest"}
             </Link>
 
-            <div className="relative">
-              <IoMdNotifications />
-              <Badge count={2} />
-            </div>
+            <span>
+              <span className="ml-5 font-bold">{user?.unseenNotifications.length}</span>
+              <IoNotifications className="cursor-pointer" onClick={()=> navigate("/notifications")} size={27}/>
+            </span>
 
             {/* Toggle Button (if you want it on the left) */}
             <button className="md:hidden" onClick={toggleSidebar}>

@@ -13,7 +13,7 @@ function ProtectedRoutes(props) {
 
   const getUser = async () => {
     try {
-      dispatch(showLoading())
+      dispatch(showLoading());
       const response = await axios.post(
         "http://localhost:3000/api/user/get-user-info-by-id",
         { token: localStorage.getItem("token") },
@@ -23,16 +23,16 @@ function ProtectedRoutes(props) {
           },
         }
       );
-      dispatch(hideLoading())
+      dispatch(hideLoading());
       if (response.data.success) {
         dispatch(setUser(response.data.data));
       } else {
-        localStorage.clear()
+        localStorage.clear();
         navigate("/login");
       }
     } catch (error) {
-      dispatch(hideLoading())
-      localStorage.clear()
+      dispatch(hideLoading());
+      localStorage.clear();
       console.log(error);
       navigate("/login");
     }

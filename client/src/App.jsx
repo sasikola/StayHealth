@@ -8,6 +8,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
 import Layout from "./components/Layout";
 import ApplyDoctor from "./Pages/Applydoctor";
+import Notifications from "./Pages/Notifications";
 
 function App() {
   const loading = useSelector((state) => state.alerts.loading);
@@ -59,6 +60,15 @@ function App() {
               <ProtectedRoutes>
                 {" "}
                 <ApplyDoctor />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <ProtectedRoutes>
+                {" "}
+                <Notifications />
               </ProtectedRoutes>
             }
           />
