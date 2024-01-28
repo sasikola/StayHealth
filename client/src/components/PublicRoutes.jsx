@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 
 function PublicRoutes(props) {
   if (localStorage.getItem("token")) {
-    return Navigate("/login");
+    return <Navigate to="/" />;
   } else {
     return props.children;
   }
